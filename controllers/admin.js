@@ -35,8 +35,11 @@ exports.getEditProduct = (req, res, next) => {
       product: product
     })
   })
-  
 };
+
+exports.postEditProduct = (req, res, next) => {
+  
+}
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {

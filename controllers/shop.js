@@ -20,7 +20,6 @@ exports.getProduct = (req, res, next) => {
       path: '/products'
     })
   })
-  
 }
 
 exports.getIndex = (req, res, next) => {
