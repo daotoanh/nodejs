@@ -1,6 +1,8 @@
 const Product = require('../models/product');
 const Cart = require('../models/cart')
 
+
+//show product trong products
 exports.getProducts = (req, res, next) => {
   Product
   .findAll()
@@ -14,6 +16,7 @@ exports.getProducts = (req, res, next) => {
   .catch(err => console.log(err))
 };
 
+//show detail product
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId
   // Product.findAll({where: {id: prodId}})
@@ -36,6 +39,7 @@ exports.getProduct = (req, res, next) => {
   .catch(err => console.log(err))
 }
 
+//show product trong shop
 exports.getIndex = (req, res, next) => {
   Product
   .findAll()

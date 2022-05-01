@@ -1,5 +1,7 @@
 const Product = require('../models/product');
 
+
+//hien thi page them product
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
     pageTitle: 'Add Product',
@@ -8,6 +10,7 @@ exports.getAddProduct = (req, res, next) => {
   });
 };
 
+//them product
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
@@ -21,10 +24,13 @@ exports.postAddProduct = (req, res, next) => {
   })
   .then(result => {
     console.log(result)
+    res.redirect('/admin/products')
   })
   .catch(err => console.log(err))
 };
 
+
+//hien thi edit mode
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit
   if(!editMode) {
@@ -47,6 +53,7 @@ exports.getEditProduct = (req, res, next) => {
   .catch(err => console.log(err))
 };
 
+//edit product
 exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId
   const updatedTitle = req.body.title
@@ -69,7 +76,7 @@ exports.postEditProduct = (req, res, next) => {
   
 }
 
-
+//hien thi product tai trang admin
 exports.getProducts = (req, res, next) => {
   Product
   .findAll()
@@ -90,8 +97,17 @@ exports.getProducts = (req, res, next) => {
   // });
 };
 
+
+//xoa product
 exports.postDeleteProduct = (req, res, next) => {
   const prodId= req.body.productId
-  Product.deleteById(prodId)
+  Product.findByPk(prodId)
+  .then(product => {
+    return product.destroy()
+  })
+  .then(result => {
+    console.log('DESTROYED PRODUCT')
+  })
+  .catch(err => console.log(err))
   res.redirect('/admin/products')
 }
