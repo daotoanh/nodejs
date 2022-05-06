@@ -74,26 +74,28 @@ exports.postAddProduct = (req, res, next) => {
   
 // }
 
-// //hien thi product tai trang admin
-// exports.getProducts = (req, res, next) => {
-//   req.user
-//   .getProducts()
-//   .then(products => {
-//     res.render('admin/products', {
-//       prods: products,
-//       pageTitle: 'Admin Products',
-//       path: '/admin/products'
-//     });
-//   })
-//   .catch(err => console.log(err))
-//   // Product.fetchAll(products => {
-//   //   res.render('admin/products', {
-//   //     prods: products,
-//   //     pageTitle: 'Admin Products',
-//   //     path: '/admin/products'
-//   //   });
-//   // });
-// };
+// //hien thi products tai trang admin
+exports.getProducts = (req, res, next) => {
+  // req.user
+  // .getProducts()
+  // .then(products => {
+  //   res.render('admin/products', {
+  //     prods: products,
+  //     pageTitle: 'Admin Products',
+  //     path: '/admin/products'
+  //   });
+  // })
+  // .catch(err => console.log(err))
+  Product.fetchAll()
+  .then(products => {
+    res.render('admin/products', {
+      prods: products,
+      pageTitle: 'Admin Products',
+      path: '/admin/products'
+    });
+  })
+  .catch(err => console.log(err));
+};
 
 
 // //xoa product
